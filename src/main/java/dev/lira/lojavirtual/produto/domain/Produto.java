@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "produto")
 public class Produto {
-    private UUID idPreco;
+    private UUID idPoduto;
     private String nome;
     private BigDecimal preco;
     @Enumerated(EnumType.STRING)
