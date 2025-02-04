@@ -1,6 +1,7 @@
 package dev.lira.lojavirtual.produto.application.service;
 
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
+import dev.lira.lojavirtual.produto.application.api.response.ProdutoDetalhadoReponse;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoListResponse;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoResponse;
 import dev.lira.lojavirtual.produto.application.repository.ProdutoRepository;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Log4j2
@@ -35,5 +37,13 @@ public class ProdutoApplicationService implements ProdutoService {
         List<Produto> produtos = produtoRespository.getAllProdutos();
         log.info("[finish] ProdutoApplicationService - getAllProdutos");
         return ProdutoListResponse.converte(produtos);
+    }
+
+    @Override
+    public ProdutoDetalhadoReponse getProdutoById(UUID idProduto) {
+        log.info("[start] ProdutoApplicationService - getProdutoById");
+        Produto produto = produtoRespository.getProdutoById(idProduto);
+        log.info("[finish] ProdutoApplicationService - getProdutoById");
+        return new ProdutoDetalhadoReponse(produto);
     }
 }
