@@ -16,10 +16,10 @@ import java.math.BigDecimal;
 @Getter
 public class ProdutoRequest {
     @NotBlank
-    private String nome;
+    private String nomeProduto;
     @NotNull(message = "O preço é obrigatório.")
     @DecimalMin(value = "0.0", inclusive = false, message = "O preço deve ser maior que zero.")
-    private BigDecimal preco;
+    private BigDecimal precoProduto;
     @Enumerated(EnumType.STRING)
     private TipoPromocao promocao;
 

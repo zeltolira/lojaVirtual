@@ -23,8 +23,8 @@ public class Produto {
     private TipoPromocao promocao;
 
     public Produto(ProdutoRequest produtoRequest) {
-        this.nomeProduto = produtoRequest.getNome();
-        this.precoProduto = produtoRequest.getPreco();
+        this.nomeProduto = produtoRequest.getNomeProduto();
+        this.precoProduto = produtoRequest.getPrecoProduto();
         this.promocao = produtoRequest.getPromocao();
     }
 }
