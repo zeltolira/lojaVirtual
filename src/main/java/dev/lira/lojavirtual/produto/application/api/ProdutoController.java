@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 @RestController
 @Log4j2
 @RequiredArgsConstructor
@@ -15,9 +17,9 @@ public class ProdutoController implements produtoAPI {
 
     @Override
     public ProdutoResponse postProduto(ProdutoRequest produtoRequest) {
-       // log.info("[start] ProdutoController - postProduto");
+        log.info("[start] ProdutoController - postProduto");
         ProdutoResponse produtoCriado = produtoService.postProduto(produtoRequest);
-     //   log.info("[finish] ProdutoController - postProduto");
+        log.info("[finish] ProdutoController - postProduto");
         return produtoCriado;
     }
 }
