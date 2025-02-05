@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.application.api.request;
 
+import dev.lira.lojavirtual.produto.domain.StatusProduto;
 import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,6 +21,7 @@ public class ProdutoRequest {
     @NotNull(message = "O preço é obrigatório.")
     @DecimalMin(value = "0.0", inclusive = false, message = "O preço deve ser maior que zero.")
     private BigDecimal precoProduto;
+    private StatusProduto statusProduto = StatusProduto.EM_ESTOQUE;
     @Enumerated(EnumType.STRING)
     private TipoPromocao promocao;
 
