@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.application.service;
 
+import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoDetalhadoReponse;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoListResponse;
@@ -46,4 +47,14 @@ public class ProdutoApplicationService implements ProdutoService {
         log.info("[finish] ProdutoApplicationService - getProdutoById");
         return new ProdutoDetalhadoReponse(produto);
     }
+
+    @Override
+    public void patchProdutoById(UUID idProduto, ProdutoPatchRequest produtoPatchRequest) {
+        log.info("[start] ProdutoApplicationService - patchProdutoById");
+        Produto produto = produtoRespository.getProdutoById(idProduto);
+        produto.patchProduto(produtoPatchRequest);
+        produtoRespository.saveProduto(produto);
+        log.info("[finish] ProdutoApplicationService - patchProdutoById");
+    }
 }
+

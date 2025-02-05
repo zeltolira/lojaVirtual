@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.application.api;
 
+import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoDetalhadoReponse;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoListResponse;
@@ -26,4 +27,8 @@ public interface produtoAPI {
     @GetMapping(value = "/{idProduto}")
     @ResponseStatus(code = HttpStatus.OK)
     ProdutoDetalhadoReponse getProdutoById(@PathVariable UUID idProduto);
+
+    @PatchMapping(value = "/{idProduto}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void patchProdutoById(@PathVariable UUID idProduto, @Valid @RequestBody ProdutoPatchRequest produtoPatchRequest);
 }

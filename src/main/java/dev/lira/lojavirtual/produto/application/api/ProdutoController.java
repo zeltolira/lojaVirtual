@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.application.api;
 
+import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoDetalhadoReponse;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoListResponse;
@@ -41,5 +42,14 @@ public class ProdutoController implements produtoAPI {
         ProdutoDetalhadoReponse produtoDetalhado = produtoService.getProdutoById(idProduto);
         log.info("[finish] ProdutoController - getProdutoById");
         return produtoDetalhado;
+    }
+
+    @Override
+    public void patchProdutoById(UUID idProduto, ProdutoPatchRequest produtoPatchRequest) {
+        log.info("[start] ProdutoController - patchProdutoById");
+        log.info("[idProduto] {}", idProduto);
+        produtoService.patchProdutoById(idProduto, produtoPatchRequest);
+        log.info("[finish] ProdutoController - patchProdutoById");
+
     }
 }

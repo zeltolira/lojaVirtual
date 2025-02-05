@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.domain;
 
+import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -26,6 +27,12 @@ public class Produto {
         this.nomeProduto = produtoRequest.getNomeProduto();
         this.precoProduto = produtoRequest.getPrecoProduto();
         this.promocao = produtoRequest.getPromocao();
+    }
+
+    public void patchProduto(ProdutoPatchRequest produtoPatchRequest) {
+        this.nomeProduto = produtoPatchRequest.getNomeProduto();
+        this.precoProduto = produtoPatchRequest.getPrecoProduto();
+        this.promocao = produtoPatchRequest.getPromocao();
     }
 }
 

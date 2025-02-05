@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.application.service;
 
+import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoDetalhadoReponse;
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoListResponse;
@@ -12,4 +13,5 @@ public interface ProdutoService {
     ProdutoResponse postProduto(ProdutoRequest produtoRequest);
     List<ProdutoListResponse> getAllProdutos();
     ProdutoDetalhadoReponse getProdutoById(UUID idProduto);
+    void patchProdutoById(UUID idProduto, ProdutoPatchRequest produtoPatchRequest);
 }
