@@ -9,4 +9,5 @@ public interface ProdutoRepository {
     Produto saveProduto(Produto produto);
     List<Produto> getAllProdutos();
     Produto getProdutoById(UUID idProduto);
+    void deletaProduto(Produto produto);
 }

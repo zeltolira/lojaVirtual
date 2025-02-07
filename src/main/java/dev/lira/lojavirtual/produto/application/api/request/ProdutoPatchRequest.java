@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @ToString
@@ -14,4 +15,5 @@ public class ProdutoPatchRequest {
     private BigDecimal precoProduto;
     private StatusProduto statusProduto;
     private TipoPromocao promocao;
+    private LocalDateTime dataHoraUltimaAteracao;
 }

@@ -56,5 +56,32 @@ public class ProdutoApplicationService implements ProdutoService {
         produtoRespository.saveProduto(produto);
         log.info("[finish] ProdutoApplicationService - patchProdutoById");
     }
+
+    @Override
+    public void alteraStatusProdutoParaEmEstoque(UUID idProduto) {
+        log.info("[start] ProdutoApplicationService - alteraStatusProdutoParaEmEstoque");
+        Produto produto = produtoRespository.getProdutoById(idProduto);
+        produto.alteraStatusProdutoParaEmEstoque();
+        produtoRespository.saveProduto(produto);
+        log.info("[finish] ProdutoApplicationService - alteraStatusProdutoParaEmEstoque");
+
+    }
+
+    @Override
+    public void alteraStatusProdutoParaForaDeEstoque(UUID idProduto) {
+        log.info("[start] ProdutoApplicationService - alteraStatusProdutoParaForaDeEstoque");
+        Produto produto = produtoRespository.getProdutoById(idProduto);
+        produto.alteraStatusProdutoParaForaDeEstoque(idProduto);
+        produtoRespository.saveProduto(produto);
+        log.info("[finish] ProdutoApplicationService - alteraStatusProdutoParaForaDeEstoque");
+    }
+
+    @Override
+    public void deletaProduto(UUID idProduto) {
+        log.info("[start] ProdutoApplicationService - deletaProduto");
+        Produto produto = produtoRespository.getProdutoById(idProduto);
+        produtoRespository.deletaProduto(produto);
+        log.info("[finish] ProdutoApplicationService - deletaProduto");
+    }
 }
 

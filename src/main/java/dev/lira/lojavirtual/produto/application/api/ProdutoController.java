@@ -52,4 +52,31 @@ public class ProdutoController implements produtoAPI {
         log.info("[finish] ProdutoController - patchProdutoById");
 
     }
+
+    @Override
+    public void alteraStatusProdutoParaEmEstoque(UUID idProduto) {
+        log.info("[start] ProdutoController - alteraStatusProdutoParaEmEstoque");
+        log.info("[idProduto] {}", idProduto);
+        produtoService.alteraStatusProdutoParaEmEstoque(idProduto);
+        log.info("[finish] ProdutoController - alteraStatusProdutoParaEmEstoque");
+
+    }
+
+    @Override
+    public void alteraStatusProdutoParaForaDeEstoque(UUID idProduto) {
+        log.info("[start] ProdutoController - alteraStatusProdutoParaForaDeEstoque");
+        log.info("[idProduto] {}", idProduto);
+        produtoService.alteraStatusProdutoParaForaDeEstoque(idProduto);
+        log.info("[start] ProdutoController - alteraStatusProdutoParaForaDeEstoque");
+
+    }
+
+    @Override
+    public void deletaProduto(UUID idProduto) {
+        log.info("[start] ProdutoController - deletaProduto");
+        log.info("[idProduto] {}", idProduto);
+        produtoService.deletaProduto(idProduto);
+        log.info("[finish] ProdutoController - deletaProduto");
+
+    }
 }

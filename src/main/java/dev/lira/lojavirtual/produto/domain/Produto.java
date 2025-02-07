@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -27,18 +28,31 @@ public class Produto {
     @Enumerated(EnumType.STRING)
     private TipoPromocao promocao;
 
+    private LocalDateTime dataHoraCriacao;
+    private LocalDateTime dataHoraUltimaAteracao;
+
     public Produto(ProdutoRequest produtoRequest) {
         this.nomeProduto = produtoRequest.getNomeProduto();
         this.precoProduto = produtoRequest.getPrecoProduto();
         this.statusProduto = getStatusProduto();
         this.promocao = produtoRequest.getPromocao();
+        this.dataHoraCriacao =  LocalDateTime.now();
     }
 
     public void patchProduto(ProdutoPatchRequest produtoPatchRequest) {
         this.nomeProduto = produtoPatchRequest.getNomeProduto();
         this.precoProduto = produtoPatchRequest.getPrecoProduto();
-        this.statusProduto = produtoPatchRequest.getStatusProduto();
+        this.statusProduto = getStatusProduto();
         this.promocao = produtoPatchRequest.getPromocao();
+        this.dataHoraUltimaAteracao = LocalDateTime.now();
+    }
+
+    public void alteraStatusProdutoParaEmEstoque() {
+        this.statusProduto = StatusProduto.EM_ESTOQUE;
+    }
+
+    public void alteraStatusProdutoParaForaDeEstoque(UUID idProduto) {
+        this.statusProduto = StatusProduto.FORA_DE_ESTOQUE;
     }
 }
 

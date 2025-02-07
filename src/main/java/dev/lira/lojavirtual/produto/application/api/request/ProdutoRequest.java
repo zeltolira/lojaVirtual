@@ -7,11 +7,11 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @ToString
 @Getter
@@ -24,6 +24,5 @@ public class ProdutoRequest {
     private StatusProduto statusProduto = StatusProduto.EM_ESTOQUE;
     @Enumerated(EnumType.STRING)
     private TipoPromocao promocao;
-
-
+    private LocalDateTime dataHoraCriacao;
 }

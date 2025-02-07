@@ -31,4 +31,16 @@ public interface produtoAPI {
     @PatchMapping(value = "/{idProduto}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     void patchProdutoById(@PathVariable UUID idProduto, @Valid @RequestBody ProdutoPatchRequest produtoPatchRequest);
+
+    @PatchMapping(value = "/{idProduto}/emEstoque")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void alteraStatusProdutoParaEmEstoque(@PathVariable UUID idProduto);
+
+    @PatchMapping(value = "/{idProduto}/foraDeEstoque")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void alteraStatusProdutoParaForaDeEstoque(@PathVariable UUID idProduto);
+
+    @DeleteMapping(value = "/{idProduto}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deletaProduto(@PathVariable UUID idProduto);
 }

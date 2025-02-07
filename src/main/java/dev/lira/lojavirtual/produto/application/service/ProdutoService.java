@@ -14,4 +14,7 @@ public interface ProdutoService {
     List<ProdutoListResponse> getAllProdutos();
     ProdutoDetalhadoReponse getProdutoById(UUID idProduto);
     void patchProdutoById(UUID idProduto, ProdutoPatchRequest produtoPatchRequest);
+    void alteraStatusProdutoParaEmEstoque(UUID idProduto);
+    void alteraStatusProdutoParaForaDeEstoque(UUID idProduto);
+    void deletaProduto(UUID idProduto);
 }

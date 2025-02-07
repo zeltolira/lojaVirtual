@@ -42,4 +42,11 @@ public class ProdutoInfraRepository implements ProdutoRepository {
         log.info("[finish] ProdutoInfraRepository - getProdutoById");
         return produto;
     }
+
+    @Override
+    public void deletaProduto(Produto produto) {
+        log.info("[start] ProdutoInfraRepository - deletaProduto");
+        produtoSpringDataJPARepository.delete(produto);
+        log.info("[finish] ProdutoInfraRepository - deletaProduto");
+    }
 }
