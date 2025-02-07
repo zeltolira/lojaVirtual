@@ -4,6 +4,7 @@ import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
+@Data
 @Entity
 @NoArgsConstructor
 @Table(name = "produto")
