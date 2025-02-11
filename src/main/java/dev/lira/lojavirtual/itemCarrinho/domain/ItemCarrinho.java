@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.itemCarrinho.domain;
 
+import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
 import dev.lira.lojavirtual.produto.domain.Produto;
 import jakarta.persistence.*;
@@ -20,6 +21,9 @@ public class ItemCarrinho {
     @ManyToOne
     @JoinColumn(name = "produto_id", nullable = false)
     private Produto produto;
+    @ManyToOne
+    @JoinColumn(name = "carrinho_id", nullable = false)
+    private Carrinho carrinho;
     private int quantidade;
     private BigDecimal subtotal;
     private LocalDateTime dataHoraCriacao;
