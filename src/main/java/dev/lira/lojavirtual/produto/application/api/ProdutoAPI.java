@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/v1/produto")
-public interface produtoAPI {
+public interface ProdutoAPI {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)

@@ -17,7 +17,7 @@ import java.util.UUID;
 @RestController
 @Log4j2
 @RequiredArgsConstructor
-public class ProdutoController implements produtoAPI {
+public class ProdutoController implements ProdutoAPI {
     private final ProdutoService produtoService;
 
     @Override
