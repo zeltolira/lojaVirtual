@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.carrinho.application.service;
 
+import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.response.ItemCarrinhoResponse;
 import dev.lira.lojavirtual.carrinho.repository.CarrinhoRepository;
@@ -27,9 +28,19 @@ public class CarrinhoApplicationService implements CarrinhoService {
     }
 
     @Override
+    public CarrinhoDetalhadoResponse getCarrinhoById(Long idCarrinho) {
+        log.info("[start] CarrinhoApplicationService - getCarrinhoById");
+
+        log.info("[finish] CarrinhoApplicationService - getCarrinhoById");
+        return null;
+    }
+
+    @Override
     public ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade) {
         log.info("[start] CarrinhoApplicationService - adicionaItemCarrinho");
+
         log.info("[finish] CarrinhoApplicationService - adicionaItemCarrinho");
         return null;
     }
+
 }

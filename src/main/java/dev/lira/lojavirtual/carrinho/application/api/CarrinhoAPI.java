@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.carrinho.application.api;
 
+import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.request.CarrinhoRequest;
 import dev.lira.lojavirtual.carrinho.application.api.response.ItemCarrinhoResponse;
@@ -17,9 +18,14 @@ public interface CarrinhoAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     CarrinhoResponse postCarrinho(@Valid @RequestBody CarrinhoRequest carrinhoRequest);
 
+    @GetMapping(value = "/{idCarrinho}")
+    @ResponseStatus(code = HttpStatus.OK)
+    CarrinhoDetalhadoResponse getCarrinhoById(@PathVariable Long idCarrinho);
+
     @PostMapping(value = "/{idCarrinho}/itens/{idProduto}")
     @ResponseStatus(code = HttpStatus.OK)
-    ItemCarrinhoResponse adicionaItemCarrinho(@PathVariable(name = "idCarrinho") Long idCarrinho,
-                                              @PathVariable(name = "idProduto") UUID idProduto,
+    ItemCarrinhoResponse adicionaItemCarrinho(@PathVariable Long idCarrinho,
+                                              @PathVariable UUID idProduto,
                                               @RequestParam int quantidade);
+
 }
