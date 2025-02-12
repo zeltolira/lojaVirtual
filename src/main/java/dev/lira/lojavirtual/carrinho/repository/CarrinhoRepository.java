@@ -1,4 +1,4 @@
-package dev.lira.lojavirtual.carrinho.application.repository;
+package dev.lira.lojavirtual.carrinho.repository;
 
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 

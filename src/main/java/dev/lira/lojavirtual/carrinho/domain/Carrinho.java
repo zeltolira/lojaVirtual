@@ -1,6 +1,6 @@
 package dev.lira.lojavirtual.carrinho.domain;
 
-import dev.lira.lojavirtual.carrinho.application.request.CarrinhoRequest;
+import dev.lira.lojavirtual.carrinho.application.api.request.CarrinhoRequest;
 import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 import jakarta.persistence.*;
 import lombok.Data;

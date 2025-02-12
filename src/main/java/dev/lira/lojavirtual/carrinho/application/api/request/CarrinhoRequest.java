@@ -1,4 +1,4 @@
-package dev.lira.lojavirtual.carrinho.application.request;
+package dev.lira.lojavirtual.carrinho.application.api.request;
 
 import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 import lombok.Getter;
