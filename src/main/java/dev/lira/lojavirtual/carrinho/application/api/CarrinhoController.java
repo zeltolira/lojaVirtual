@@ -3,7 +3,7 @@ package dev.lira.lojavirtual.carrinho.application.api;
 import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.request.CarrinhoRequest;
-import dev.lira.lojavirtual.carrinho.application.api.response.ItemCarrinhoResponse;
+import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
 import dev.lira.lojavirtual.carrinho.application.service.CarrinhoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
