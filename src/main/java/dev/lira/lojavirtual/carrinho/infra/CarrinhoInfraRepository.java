@@ -3,6 +3,7 @@ package dev.lira.lojavirtual.carrinho.infra;
 import dev.lira.lojavirtual.carrinho.repository.CarrinhoRepository;
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.handler.APIException;
+import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -29,5 +30,12 @@ public class CarrinhoInfraRepository implements CarrinhoRepository {
                         .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Carrinho não encotrado para o ID " + idCarrinho));
         log.info("[finish] CarrinhoInfraRepository - carrinhogetCarrinhoById");
         return carrinho;
+    }
+
+    @Override
+    public void adicionaItemCarrinho(ItemCarrinho itemCarrinho) {
+        log.info("[start] CarrinhoInfraRepository - adicionaItemCarrinho");
+        log.info("[finish] CarrinhoInfraRepository - adicionaItemCarrinho");
+
     }
 }

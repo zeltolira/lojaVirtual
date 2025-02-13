@@ -28,7 +28,11 @@ public class ItemCarrinho {
     private LocalDateTime dataHoraCriacao;
     private LocalDateTime dataHoraUltimaAlteracao;
 
-
+       public ItemCarrinho(Produto produto, int quantidade) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+        calcularSubtotal();
+    }
 
     public void calcularSubtotal(){
         if (produto.getPromocao() != null){
