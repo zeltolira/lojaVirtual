@@ -30,9 +30,9 @@ public class CarrinhoApplicationService implements CarrinhoService {
     @Override
     public CarrinhoDetalhadoResponse getCarrinhoById(Long idCarrinho) {
         log.info("[start] CarrinhoApplicationService - getCarrinhoById");
-
+        Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
         log.info("[finish] CarrinhoApplicationService - getCarrinhoById");
-        return null;
+        return new CarrinhoDetalhadoResponse(carrinho);
     }
 
     @Override

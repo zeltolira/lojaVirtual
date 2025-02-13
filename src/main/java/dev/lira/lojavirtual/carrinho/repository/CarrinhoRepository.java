@@ -4,4 +4,5 @@ import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 
 public interface CarrinhoRepository {
     Carrinho postCarrinho(Carrinho carrinho);
+    Carrinho getCarrinhoById(Long idCarrinho);
 }
