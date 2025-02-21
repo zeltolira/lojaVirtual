@@ -1,6 +1,7 @@
 package dev.lira.lojavirtual.itemCarrinho.domain;
 
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
+import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
 import dev.lira.lojavirtual.produto.domain.Produto;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -33,6 +34,15 @@ public class ItemCarrinho {
         this.quantidade = quantidade;
         calcularSubtotal();
     }
+
+       public ItemCarrinho(Produto produto, Carrinho carrinho, ItemCarrinhoRequest itemCarrinhoRequest) {
+        this.produto = produto;
+        this.carrinho = carrinho;
+        this.quantidade = itemCarrinhoRequest.getQuantidade();
+        this.dataHoraCriacao = LocalDateTime.now();
+        calcularSubtotal();
+    }
+
 
     public void calcularSubtotal(){
         if (produto.getPromocao() != null){

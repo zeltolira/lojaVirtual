@@ -4,11 +4,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @Data
 @ToString
 public class ItemCarrinhoRequest {
     @NotNull
-    private Long idProduto;
+    private UUID idProduto;
 
     @NotNull
     private Long idCarrinho;

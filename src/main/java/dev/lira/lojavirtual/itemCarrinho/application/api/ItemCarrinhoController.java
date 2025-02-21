@@ -15,9 +15,9 @@ public class ItemCarrinhoController implements ItemCarrinhoAPI {
 
     @Override
     public ItemCarrinhoResponse postItemCarrinho(ItemCarrinhoRequest itemCarrinhoRequest) {
-        log.info("[start] ItemCarrinhoResponse - postItemCarrinho");
+        log.info("[start] ItemCarrinhoController - postItemCarrinho");
         ItemCarrinhoResponse itemCarrinho = itemCarrinhoService.postItemCarrinho(itemCarrinhoRequest);
-        log.info("[finish] ItemCarrinhoResponse - postItemCarrinho");
+        log.info("[finish] ItemCarrinhoController - postItemCarrinho");
         return itemCarrinho;
     }
 }
