@@ -27,6 +27,8 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(itemCarrinhoRequest.getIdCarrinho());
         ItemCarrinho itemCarrinho = new ItemCarrinho(produto, carrinho, itemCarrinhoRequest);
         ItemCarrinho itemSalvo = itemCarrinhoRepository.salvarItemCarrinho(itemCarrinho);
+        carrinho.adicionarItem(itemCarrinho);
+        carrinhoRepository.saveCarrinho(carrinho);
         log.info("[finish] ItemCarrinhoApplicationService - postItemCarrinho");
         return new ItemCarrinhoResponse(itemSalvo);
     }

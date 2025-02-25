@@ -8,7 +8,8 @@ public enum TipoPromocao {
     public BigDecimal calcularDesconto(BigDecimal preco, int quantidade){
         switch (this){
             case LEVE_2_PAGUE_1:
-                return  preco.multiply(BigDecimal.valueOf(quantidade / 2));
+                int quantidadePaga = (quantidade + 1) /2;
+                return  preco.multiply(BigDecimal.valueOf(quantidade));
             case TRES_POR_DEZ:
                 int gruposDeTres = quantidade / 3;
                 int restantes = quantidade % 3;

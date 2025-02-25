@@ -16,10 +16,10 @@ public class CarrinhoInfraRepository implements CarrinhoRepository {
     private final CarrinhoSpringDataJPARepository carrinhoSpringDataJPARepository;
 
     @Override
-    public Carrinho postCarrinho(Carrinho carrinho) {
-        log.info("[start] CarrinhoInfraRepository - postCarrinho");
+    public Carrinho saveCarrinho(Carrinho carrinho) {
+        log.info("[start] CarrinhoInfraRepository - saveCarrinho");
         Carrinho carrinhoSalvo = carrinhoSpringDataJPARepository.save(carrinho);
-        log.info("[finish] CarrinhoInfraRepository - postCarrinho");
+        log.info("[finish] CarrinhoInfraRepository - saveCarrinho");
         return carrinhoSalvo;
     }
 

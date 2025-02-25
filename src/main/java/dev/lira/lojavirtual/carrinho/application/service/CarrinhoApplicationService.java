@@ -28,7 +28,7 @@ public class CarrinhoApplicationService implements CarrinhoService {
     @Override
     public CarrinhoResponse postCarrinho(CarrinhoRequest carrinhoRequest) {
         log.info("[start] CarrinhoApplicationService - postCarrinho");
-        Carrinho carrinho = carrinhoRepository.postCarrinho(new Carrinho(carrinhoRequest));
+        Carrinho carrinho = carrinhoRepository.saveCarrinho(new Carrinho(carrinhoRequest));
         log.info("[finish] CarrinhoApplicationService - postCarrinho");
         return new CarrinhoResponse(carrinho);
     }
