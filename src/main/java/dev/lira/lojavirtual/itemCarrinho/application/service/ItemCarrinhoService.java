@@ -4,6 +4,9 @@ import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoReq
 import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
 import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 
+import java.util.UUID;
+
 public interface ItemCarrinhoService {
     ItemCarrinhoResponse postItemCarrinho(ItemCarrinhoRequest itemCarrinhoRequest);
+    void deletaItemCarrinho(Long idCarrinho, Long idItemCarrinho, UUID idProduto);
 }

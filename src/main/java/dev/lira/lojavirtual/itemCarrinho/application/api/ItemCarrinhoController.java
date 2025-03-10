@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @Log4j2
 @RequiredArgsConstructor
@@ -19,5 +21,13 @@ public class ItemCarrinhoController implements ItemCarrinhoAPI {
         ItemCarrinhoResponse itemCarrinho = itemCarrinhoService.postItemCarrinho(itemCarrinhoRequest);
         log.info("[finish] ItemCarrinhoController - postItemCarrinho");
         return itemCarrinho;
+    }
+
+    @Override
+    public void deletaItemCarrinho(Long idCarrinho, Long idItemCarrinho, UUID idProduto) {
+        log.info("[start] ItemCarrinhoController - deletaItemCarrinho");
+        itemCarrinhoService.deletaItemCarrinho(idCarrinho, idItemCarrinho, idProduto);
+        log.info("[finish] ItemCarrinhoController - deletaItemCarrinho");
+
     }
 }

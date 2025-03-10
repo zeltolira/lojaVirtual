@@ -15,7 +15,7 @@ public interface ItemCarrinhoAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     public ItemCarrinhoResponse postItemCarrinho(@RequestBody @Valid ItemCarrinhoRequest itemCarrinhoRequest);
 
-    @DeleteMapping(value = "/{idItemCarrinho/delete/{idProduto}")
+    @DeleteMapping(value = "/{idCarrinho}/{idItemCarrinho}/delete/{idProduto}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    void deletaItemCarrinho(@PathVariable Long idItemCarrinho, @PathVariable UUID idProduto);
+    void deletaItemCarrinho(@PathVariable Long idCarrinho, @PathVariable Long idItemCarrinho, @PathVariable UUID idProduto);
 }

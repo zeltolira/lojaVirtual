@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -31,5 +33,12 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
         carrinhoRepository.saveCarrinho(carrinho);
         log.info("[finish] ItemCarrinhoApplicationService - postItemCarrinho");
         return new ItemCarrinhoResponse(itemSalvo);
+    }
+
+    @Override
+    public void deletaItemCarrinho(Long idCarrinho, Long idItemCarrinho, UUID idProduto) {
+        log.info("[start] ItemCarrinhoApplicationService - deletaItemCarrinho");
+
+        log.info("[finish] ItemCarrinhoApplicationService - deletaItemCarrinho");
     }
 }
