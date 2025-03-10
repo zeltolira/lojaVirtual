@@ -49,7 +49,7 @@ public class Carrinho {
 //        itens.remove(item);
 //        calcularTotal();
 //    }
-    private void calcularTotal() {
+    public void calcularTotal() {
         this.total = itens.stream()
                 .map(ItemCarrinho::getSubtotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

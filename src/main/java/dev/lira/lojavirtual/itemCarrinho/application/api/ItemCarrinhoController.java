@@ -28,6 +28,5 @@ public class ItemCarrinhoController implements ItemCarrinhoAPI {
         log.info("[start] ItemCarrinhoController - deletaItemCarrinho");
         itemCarrinhoService.deletaItemCarrinho(idCarrinho, idItemCarrinho, idProduto);
         log.info("[finish] ItemCarrinhoController - deletaItemCarrinho");
-
     }
 }
