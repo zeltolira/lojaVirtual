@@ -46,15 +46,16 @@ public class CarrinhoApplicationService implements CarrinhoService {
         log.info("[start] CarrinhoApplicationService - adicionaItemCarrinho");
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
         if (carrinho == null){
-            APIException.build(HttpStatus.NOT_FOUND, "Carrinho não encontrado");
+           throw APIException.build(HttpStatus.NOT_FOUND, "Carrinho não encontrado");
         }
         Produto produto = produtoRepository.getProdutoById(idProduto);
         if (carrinho == null){
-            APIException.build(HttpStatus.NOT_FOUND, "Produto não encontrado");
+            throw APIException.build(HttpStatus.NOT_FOUND, "Produto não encontrado");
         }
         ItemCarrinho itemCarrinho = new ItemCarrinho(produto, quantidade);
         carrinho.adicionarItem(itemCarrinho);
         carrinhoRepository.adicionaItemCarrinho(itemCarrinho);
+        carrinhoRepository.saveCarrinho(carrinho);
         log.info("[finish] CarrinhoApplicationService - adicionaItemCarrinho");
         return new ItemCarrinhoResponse(itemCarrinho);
     }

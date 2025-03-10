@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.carrinho.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.lira.lojavirtual.carrinho.application.api.request.CarrinhoRequest;
 import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 import jakarta.persistence.*;
@@ -19,6 +20,7 @@ public class Carrinho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCarrinho;
+
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemCarrinho> itens = new ArrayList<>();
     private BigDecimal total = BigDecimal.ZERO;
@@ -26,22 +28,27 @@ public class Carrinho {
     private LocalDateTime dataHoraUltimaAlteracao;
 
     public Carrinho(CarrinhoRequest carrinhoRequest) {
-        this.itens = carrinhoRequest.getItens();
-        this.total = carrinhoRequest.getTotal();
+        this.total = BigDecimal.ZERO;
         this.dataHoraCriacao = LocalDateTime.now();
+
+        if (carrinhoRequest.getItens() != null){
+            for (ItemCarrinho item : carrinhoRequest.getItens()){
+                this.adicionarItem(item);
+            }
+        }
     }
 
 
     public void adicionarItem(ItemCarrinho item){
         itens.add(item);
         item.setCarrinho(this);
-        calcularTotal();
+        this.calcularTotal();
     }
 
-    public  void removerItem(ItemCarrinho item){
-        itens.remove(item);
-        calcularTotal();
-    }
+//    public  void removerItem(ItemCarrinho item){
+//        itens.remove(item);
+//        calcularTotal();
+//    }
     private void calcularTotal() {
         this.total = itens.stream()
                 .map(ItemCarrinho::getSubtotal)

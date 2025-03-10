@@ -1,5 +1,7 @@
 package dev.lira.lojavirtual.itemCarrinho.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
 import dev.lira.lojavirtual.produto.domain.Produto;
@@ -27,6 +29,7 @@ public class ItemCarrinho {
 
     @ManyToOne
     @JoinColumn(name = "carrinho_id", nullable = false)
+    @JsonIgnore
     private Carrinho carrinho;
 
     private int quantidade;
@@ -42,8 +45,7 @@ public class ItemCarrinho {
     public ItemCarrinho(Produto produto, Carrinho carrinho, ItemCarrinhoRequest itemCarrinhoRequest) {
         this.produto = produto;
         this.carrinho = carrinho;
-        this.quantidade = itemCarrinhoRequest.getQuantidade();
-        this.dataHoraCriacao = LocalDateTime.now();
+        this.setQuantidade(itemCarrinhoRequest.getQuantidade());
         calcularSubtotal();
     }
 
