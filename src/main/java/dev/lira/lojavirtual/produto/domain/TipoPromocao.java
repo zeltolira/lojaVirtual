@@ -9,7 +9,7 @@ public enum TipoPromocao {
         switch (this){
             case LEVE_2_PAGUE_1:
                 int quantidadePaga = (quantidade + 1) /2;
-                return  preco.multiply(BigDecimal.valueOf(quantidade));
+                return  preco.multiply(BigDecimal.valueOf(quantidadePaga));
             case TRES_POR_DEZ:
                 int gruposDeTres = quantidade / 3;
                 int restantes = quantidade % 3;
