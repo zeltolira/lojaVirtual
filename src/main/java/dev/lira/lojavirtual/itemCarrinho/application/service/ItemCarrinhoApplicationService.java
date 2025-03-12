@@ -4,6 +4,7 @@ import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.carrinho.repository.CarrinhoRepository;
 import dev.lira.lojavirtual.handler.APIException;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
+import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
 import dev.lira.lojavirtual.itemCarrinho.application.repository.ItemCarrinhoRepository;
 import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
@@ -38,6 +39,14 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
     }
 
     @Override
+    public ItemCarrinhoDetalhadoResponse getItemCarrinho(Long idItemCarrinho) {
+        log.info("[start] ItemCarrinhoApplicationService - getItemCarrinho");
+        ItemCarrinho itemCarrinho = itemCarrinhoRepository.findById(idItemCarrinho);
+        log.info("[finish] ItemCarrinhoApplicationService - getItemCarrinho");
+        return new ItemCarrinhoDetalhadoResponse(itemCarrinho);
+    }
+
+    @Override
     public void deletaItemCarrinho(Long idCarrinho, Long idItemCarrinho, UUID idProduto) {
         log.info("[start] ItemCarrinhoApplicationService - deletaItemCarrinho");
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
@@ -46,7 +55,7 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
             throw new RuntimeException("O intem não pertence ao carrinho especificaddo");
         }
         if (!item.getProduto().getIdProduto().equals(idProduto)){
-            throw new RuntimeException("O intem não está associado ao produto especificaddo");
+            throw new RuntimeException("O item não está associado ao produto especificaddo");
         }
         carrinho.getItens().remove(item);
         itemCarrinhoRepository.delete(item);
@@ -54,4 +63,5 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
         carrinhoRepository.saveCarrinho(carrinho);
         log.info("[finish] ItemCarrinhoApplicationService - deletaItemCarrinho");
     }
+
 }

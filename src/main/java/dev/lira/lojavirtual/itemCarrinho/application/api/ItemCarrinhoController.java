@@ -1,6 +1,7 @@
 package dev.lira.lojavirtual.itemCarrinho.application.api;
 
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
+import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
 import dev.lira.lojavirtual.itemCarrinho.application.service.ItemCarrinhoService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,14 @@ public class ItemCarrinhoController implements ItemCarrinhoAPI {
         ItemCarrinhoResponse itemCarrinho = itemCarrinhoService.postItemCarrinho(itemCarrinhoRequest);
         log.info("[finish] ItemCarrinhoController - postItemCarrinho");
         return itemCarrinho;
+    }
+
+    @Override
+    public ItemCarrinhoDetalhadoResponse getItemCarrinhoById(Long idItemCarrinho) {
+        log.info("[start] ItemCarrinhoController - getItemCarrinho");
+        ItemCarrinhoDetalhadoResponse itemCarrinhoDetalhado = itemCarrinhoService.getItemCarrinho(idItemCarrinho);
+        log.info("[finish] ItemCarrinhoController - getItemCarrinho");
+        return itemCarrinhoDetalhado;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package dev.lira.lojavirtual.itemCarrinho.application.api;
 
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
+import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,10 @@ public interface ItemCarrinhoAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public ItemCarrinhoResponse postItemCarrinho(@RequestBody @Valid ItemCarrinhoRequest itemCarrinhoRequest);
+
+    @GetMapping(value = "/{idItemCarrinho}")
+    @ResponseStatus(code = HttpStatus.OK)
+    ItemCarrinhoDetalhadoResponse getItemCarrinhoById(@PathVariable Long idItemCarrinho);
 
     @DeleteMapping(value = "/{idCarrinho}/{idItemCarrinho}/delete/{idProduto}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
