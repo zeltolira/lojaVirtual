@@ -6,5 +6,6 @@ import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 public interface CarrinhoRepository {
     Carrinho saveCarrinho(Carrinho carrinho);
     Carrinho getCarrinhoById(Long idCarrinho);
-    void adicionaItemCarrinho(ItemCarrinho itemCarrinho);
+    void deleteCarrinho(Carrinho carrinho);
+//    void adicionaItemCarrinho(ItemCarrinho itemCarrinho);
 }

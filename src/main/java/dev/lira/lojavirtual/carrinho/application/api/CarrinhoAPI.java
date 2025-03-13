@@ -22,10 +22,14 @@ public interface CarrinhoAPI {
     @ResponseStatus(code = HttpStatus.OK)
     CarrinhoDetalhadoResponse getCarrinhoById(@PathVariable Long idCarrinho);
 
-    @PostMapping(value = "/{idCarrinho}/itens/{idProduto}")
-    @ResponseStatus(code = HttpStatus.OK)
-    ItemCarrinhoResponse adicionaItemCarrinho(@PathVariable Long idCarrinho,
-                                              @PathVariable UUID idProduto,
-                                              @RequestParam int quantidade);
+//    @PostMapping(value = "/{idCarrinho}/itens/{idProduto}")
+//    @ResponseStatus(code = HttpStatus.OK)
+//    ItemCarrinhoResponse adicionaItemCarrinho(@PathVariable Long idCarrinho,
+//                                              @PathVariable UUID idProduto,
+//                                              @RequestParam int quantidade);
+
+    @DeleteMapping(value = "/{idCarrinho}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deleleCarrinhoById(@PathVariable Long idCarrinho);
 
 }

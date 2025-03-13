@@ -33,12 +33,19 @@ public class CarrinhoInfraRepository implements CarrinhoRepository {
     }
 
     @Override
-    public void adicionaItemCarrinho(ItemCarrinho itemCarrinho) {
-        log.info("[start] CarrinhoInfraRepository - adicionaItemCarrinho");
-        Carrinho carrinho = itemCarrinho.getCarrinho();
-        carrinho.adicionarItem(itemCarrinho);
-        carrinhoSpringDataJPARepository.save(carrinho);
-        log.info("[finish] CarrinhoInfraRepository - adicionaItemCarrinho");
-
+    public void deleteCarrinho(Carrinho carrinho) {
+        log.info("[start] CarrinhoInfraRepository - delete");
+        carrinhoSpringDataJPARepository.delete(carrinho);
+        log.info("[finish] CarrinhoInfraRepository - delete");
     }
+
+//    @Override
+//    public void adicionaItemCarrinho(ItemCarrinho itemCarrinho) {
+//        log.info("[start] CarrinhoInfraRepository - adicionaItemCarrinho");
+//        Carrinho carrinho = itemCarrinho.getCarrinho();
+//        carrinho.adicionarItem(itemCarrinho);
+//        carrinhoSpringDataJPARepository.save(carrinho);
+//        log.info("[finish] CarrinhoInfraRepository - adicionaItemCarrinho");
+//
+//    }
 }

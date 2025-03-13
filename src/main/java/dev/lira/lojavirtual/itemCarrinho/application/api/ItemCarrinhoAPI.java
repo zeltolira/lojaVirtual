@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface ItemCarrinhoAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ItemCarrinhoResponse postItemCarrinho(@RequestBody @Valid ItemCarrinhoRequest itemCarrinhoRequest);
+    ItemCarrinhoResponse postItemCarrinho(@RequestBody @Valid ItemCarrinhoRequest itemCarrinhoRequest);
 
     @GetMapping(value = "/{idItemCarrinho}")
     @ResponseStatus(code = HttpStatus.OK)

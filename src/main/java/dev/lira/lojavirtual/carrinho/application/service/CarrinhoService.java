@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface CarrinhoService {
     CarrinhoResponse postCarrinho(CarrinhoRequest carrinhoRequest);
-    ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade);
+//    ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade);
     CarrinhoDetalhadoResponse getCarrinhoById(Long idCarrinho);
+    void deleleCarrinhoById(Long idCarrinho);
 }

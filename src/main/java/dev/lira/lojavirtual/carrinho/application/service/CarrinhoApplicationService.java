@@ -42,22 +42,34 @@ public class CarrinhoApplicationService implements CarrinhoService {
     }
 
     @Override
-    public ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade) {
-        log.info("[start] CarrinhoApplicationService - adicionaItemCarrinho");
+    public void deleleCarrinhoById(Long idCarrinho) {
+        log.info("[start] CarrinhoApplicationService - deleleCarrinhoById");
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
-        if (carrinho == null){
-           throw APIException.build(HttpStatus.NOT_FOUND, "Carrinho não encontrado");
+        if (!carrinho.getItens().isEmpty()){
+            throw APIException.build(HttpStatus.NOT_FOUND, "Carrinho não pode ser excluído porque contém itens.");
         }
-        Produto produto = produtoRepository.getProdutoById(idProduto);
-        if (carrinho == null){
-            throw APIException.build(HttpStatus.NOT_FOUND, "Produto não encontrado");
-        }
-        ItemCarrinho itemCarrinho = new ItemCarrinho(produto, quantidade);
-        carrinho.adicionarItem(itemCarrinho);
-        carrinhoRepository.adicionaItemCarrinho(itemCarrinho);
-        carrinhoRepository.saveCarrinho(carrinho);
-        log.info("[finish] CarrinhoApplicationService - adicionaItemCarrinho");
-        return new ItemCarrinhoResponse(itemCarrinho);
+        carrinhoRepository.deleteCarrinho(carrinho);
+        log.info("[finish] CarrinhoApplicationService - deleleCarrinhoById");
+
     }
+
+//    @Override
+//    public ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade) {
+//        log.info("[start] CarrinhoApplicationService - adicionaItemCarrinho");
+//        Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
+//        if (carrinho == null){
+//           throw APIException.build(HttpStatus.NOT_FOUND, "Carrinho não encontrado");
+//        }
+//        Produto produto = produtoRepository.getProdutoById(idProduto);
+//        if (carrinho == null){
+//            throw APIException.build(HttpStatus.NOT_FOUND, "Produto não encontrado");
+//        }
+//        ItemCarrinho itemCarrinho = new ItemCarrinho(produto, quantidade);
+//        carrinho.adicionarItem(itemCarrinho);
+//        carrinhoRepository.adicionaItemCarrinho(itemCarrinho);
+//        carrinhoRepository.saveCarrinho(carrinho);
+//        log.info("[finish] CarrinhoApplicationService - adicionaItemCarrinho");
+//        return new ItemCarrinhoResponse(itemCarrinho);
+//    }
 
 }

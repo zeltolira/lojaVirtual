@@ -34,11 +34,19 @@ public class CarrinhoController implements CarrinhoAPI {
     }
 
     @Override
-    public ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade) {
-        log.info("[start] CarrinhoController - adicionaItemCarrinho");
-        ItemCarrinhoResponse adicionaItem = carrinhoService.adicionaItemCarrinho(idCarrinho, idProduto, quantidade);
-        log.info("[finish] CarrinhoController - adicionaItemCarrinho");
-        return adicionaItem;
+    public void deleleCarrinhoById(Long idCarrinho) {
+        log.info("[start] CarrinhoController - deleleCarrinhoById");
+        carrinhoService.deleleCarrinhoById(idCarrinho);
+        log.info("[finish] CarrinhoController - deleleCarrinhoById");
+
     }
+
+//    @Override
+//    public ItemCarrinhoResponse adicionaItemCarrinho(Long idCarrinho, UUID idProduto, int quantidade) {
+//        log.info("[start] CarrinhoController - adicionaItemCarrinho");
+//        ItemCarrinhoResponse adicionaItem = carrinhoService.adicionaItemCarrinho(idCarrinho, idProduto, quantidade);
+//        log.info("[finish] CarrinhoController - adicionaItemCarrinho");
+//        return adicionaItem;
+//    }
 
 }
