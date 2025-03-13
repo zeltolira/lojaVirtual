@@ -52,17 +52,25 @@ public class ItemCarrinho {
 
 
     public void calcularSubtotal() {
-        log.info("Calculando subtotal para o produto: {}", produto.getIdProduto());
-        log.info("Preço do produto: {}", produto.getPrecoProduto());
-        log.info("Quantidade {}", quantidade);
+       if (produto == null){
+           throw new IllegalArgumentException("O produto não pode ser nulo ao calcular o subtotal.");
+       }
+       if (produto.getPrecoProduto() == null){
+           throw new IllegalArgumentException("O preço do produto não pode ser nulo.");
+       }
+
+        log.info("Calculando subtotal para o produto [{}]: Preço = {}, Quantidade = {}",
+                produto.getIdProduto(), produto.getPrecoProduto(), quantidade);
 
         if (produto.getPromocao() != null) {
             this.subtotal = produto.getPromocao().calcularDesconto(produto.getPrecoProduto(), quantidade);
+            log.info("Promoção aplicada: {} | Subtotal calculado: {}", produto.getPromocao(), subtotal);
         } else {
             this.subtotal = produto.getPrecoProduto().multiply(BigDecimal.valueOf(quantidade));
+            log.info("Nenhuma promoção aplicada | Subtotal calculado: {}", subtotal);
         }
-        log.info("Subtotal calculado: {}", subtotal);
     }
+
 
     public void setQuantidade(int quantidade){
             if (quantidade <= 0){

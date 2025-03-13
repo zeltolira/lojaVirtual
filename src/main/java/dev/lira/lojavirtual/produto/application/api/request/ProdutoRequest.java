@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.produto.application.api.request;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dev.lira.lojavirtual.produto.domain.StatusProduto;
 import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import jakarta.persistence.EnumType;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 
 @ToString
 @Getter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProdutoRequest {
     @NotBlank
     private String nomeProduto;

@@ -6,6 +6,9 @@ public enum TipoPromocao {
     LEVE_2_PAGUE_1, TRES_POR_DEZ;
 
     public BigDecimal calcularDesconto(BigDecimal preco, int quantidade){
+        if (this == null){
+            return preco.multiply(BigDecimal.valueOf((quantidade)));
+        }
         switch (this){
             case LEVE_2_PAGUE_1:
                 int quantidadePaga = (quantidade + 1) /2;
@@ -16,6 +19,7 @@ public enum TipoPromocao {
                 return BigDecimal.valueOf(gruposDeTres * 10).add(preco.multiply(BigDecimal.valueOf(restantes)));
             default:
                 return preco.multiply(BigDecimal.valueOf(quantidade));
+
         }
     }
 }
