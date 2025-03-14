@@ -1,5 +1,6 @@
 package dev.lira.lojavirtual.itemCarrinho.application.api;
 
+import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoPatchResquest;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
 import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
@@ -37,5 +38,13 @@ public class ItemCarrinhoController implements ItemCarrinhoAPI {
         log.info("[start] ItemCarrinhoController - deletaItemCarrinho");
         itemCarrinhoService.deletaItemCarrinho(idCarrinho, idItemCarrinho, idProduto);
         log.info("[finish] ItemCarrinhoController - deletaItemCarrinho");
+    }
+
+    @Override
+    public void patchItemCarrinhoById(Long idCarrinho, UUID idProduto, ItemCarrinhoPatchResquest itemCarrinhoPatchResquest) {
+        log.info("[start] ItemCarrinhoController - patchItemCarrinhoById");
+        itemCarrinhoService.patchItemCarrinhoById(idCarrinho, idProduto, itemCarrinhoPatchResquest);
+        log.info("[finish] ItemCarrinhoController - patchItemCarrinhoById");
+
     }
 }
