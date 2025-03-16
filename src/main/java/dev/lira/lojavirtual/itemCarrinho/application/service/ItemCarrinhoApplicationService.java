@@ -65,12 +65,20 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
         ItemCarrinho itemCarrinho = itemCarrinhoOptional.get();
 
         int novaQuantidade = itemCarrinhoPatchResquest.getQuantidade();
-        if (novaQuantidade <= 0){
-            throw new IllegalArgumentException("A quantidade deve ser maior que zero");
+        if (novaQuantidade < 0){
+            throw new IllegalArgumentException("A quantidade não poder ser negativa");
         }
-        itemCarrinho.setQuantidade(novaQuantidade);
-        itemCarrinho.calcularSubtotal();
-        itemCarrinhoRepository.salvarItemCarrinho(itemCarrinho);
+        if (novaQuantidade == 0){
+            carrinho.removerItem(itemCarrinho);
+            itemCarrinhoRepository.delete(itemCarrinho);
+            carrinhoRepository.saveCarrinho(carrinho);
+        }else {
+            itemCarrinho.setQuantidade(novaQuantidade);
+            itemCarrinho.calcularSubtotal();
+            carrinho.calcularTotal();
+            itemCarrinhoRepository.salvarItemCarrinho(itemCarrinho);
+            carrinhoRepository.saveCarrinho(carrinho);
+        }
         log.info("[finish] ItemCarrinhoApplicationService - patchItemCarrinhoById");
 
     }

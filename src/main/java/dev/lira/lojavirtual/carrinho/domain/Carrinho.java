@@ -45,10 +45,11 @@ public class Carrinho {
         this.calcularTotal();
     }
 
-//    public  void removerItem(ItemCarrinho item){
-//        itens.remove(item);
-//        calcularTotal();
-//    }
+    public  void removerItem(ItemCarrinho item){
+        itens.remove(item);
+        calcularTotal();
+    }
+
     public void calcularTotal() {
         this.total = itens.stream()
                 .map(ItemCarrinho::getSubtotal)

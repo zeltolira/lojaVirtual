@@ -2,6 +2,7 @@ package dev.lira.lojavirtual.produto.application.api.response;
 
 import dev.lira.lojavirtual.produto.domain.Produto;
 import dev.lira.lojavirtual.produto.domain.StatusProduto;
+import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -18,6 +19,7 @@ public class ProdutoListResponse {
     private String nomeProduto;
     private BigDecimal precoProduto;
     private StatusProduto statusProduto;
+    private TipoPromocao promocao;
     private LocalDateTime dataHoraCriacao;
 
     public static List<ProdutoListResponse> converte(List<Produto> produtos) {
@@ -31,6 +33,7 @@ public class ProdutoListResponse {
         this.nomeProduto = produto.getNomeProduto();
         this.precoProduto = produto.getPrecoProduto();
         this.statusProduto = produto.getStatusProduto();
+        this.promocao = produto.getPromocao();
         this.dataHoraCriacao = produto.getDataHoraCriacao();
     }
 }

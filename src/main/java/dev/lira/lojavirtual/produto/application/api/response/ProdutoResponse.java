@@ -2,6 +2,7 @@ package dev.lira.lojavirtual.produto.application.api.response;
 
 import dev.lira.lojavirtual.produto.domain.Produto;
 import dev.lira.lojavirtual.produto.domain.StatusProduto;
+import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
@@ -20,6 +21,7 @@ public class ProdutoResponse {
     private String nomeProduto;
     private BigDecimal precoProduto;
     private StatusProduto statusProduto;
+    private TipoPromocao promocao;
     private LocalDateTime dataHoraCriacao;
 
     public ProdutoResponse(Produto produto) {
@@ -27,6 +29,7 @@ public class ProdutoResponse {
        this.nomeProduto = produto.getNomeProduto();
        this.precoProduto = produto.getPrecoProduto();
        this.statusProduto = produto.getStatusProduto();
+       this.promocao = produto.getPromocao();
        this.dataHoraCriacao = produto.getDataHoraCriacao();
     }
 }
