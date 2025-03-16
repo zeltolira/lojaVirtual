@@ -39,13 +39,5 @@ public class CarrinhoInfraRepository implements CarrinhoRepository {
         log.info("[finish] CarrinhoInfraRepository - delete");
     }
 
-//    @Override
-//    public void adicionaItemCarrinho(ItemCarrinho itemCarrinho) {
-//        log.info("[start] CarrinhoInfraRepository - adicionaItemCarrinho");
-//        Carrinho carrinho = itemCarrinho.getCarrinho();
-//        carrinho.adicionarItem(itemCarrinho);
-//        carrinhoSpringDataJPARepository.save(carrinho);
-//        log.info("[finish] CarrinhoInfraRepository - adicionaItemCarrinho");
-//
-//    }
+
 }

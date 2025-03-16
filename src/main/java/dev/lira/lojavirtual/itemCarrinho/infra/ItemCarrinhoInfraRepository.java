@@ -40,9 +40,9 @@ public class ItemCarrinhoInfraRepository implements ItemCarrinhoRepository {
 
     @Override
     public ItemCarrinho findById(Long idItemCarrinho) {
-        ItemCarrinho itemCarrinho = itemCarrinhoSpringDataJPARepository.findById(idItemCarrinho)
+        return itemCarrinhoSpringDataJPARepository.findById(idItemCarrinho)
                 .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Item não encontrado para o id " + idItemCarrinho));
-        return itemCarrinho;
+
     }
 
     @Override
