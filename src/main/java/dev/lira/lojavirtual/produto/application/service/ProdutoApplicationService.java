@@ -71,7 +71,7 @@ public class ProdutoApplicationService implements ProdutoService {
     public void alteraStatusProdutoParaForaDeEstoque(UUID idProduto) {
         log.info("[start] ProdutoApplicationService - alteraStatusProdutoParaForaDeEstoque");
         Produto produto = produtoRespository.getProdutoById(idProduto);
-        produto.alteraStatusProdutoParaForaDeEstoque(idProduto);
+        produto.alteraStatusProdutoParaForaDeEstoque();
         produtoRespository.saveProduto(produto);
         log.info("[finish] ProdutoApplicationService - alteraStatusProdutoParaForaDeEstoque");
     }

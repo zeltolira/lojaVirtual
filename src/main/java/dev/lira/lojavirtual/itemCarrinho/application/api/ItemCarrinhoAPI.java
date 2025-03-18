@@ -7,6 +7,7 @@ import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoRe
 import dev.lira.lojavirtual.produto.application.api.request.ProdutoPatchRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;

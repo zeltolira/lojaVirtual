@@ -27,4 +27,10 @@ public class ProdutoRequest {
     @Enumerated(EnumType.STRING)
     private TipoPromocao promocao;
     private LocalDateTime dataHoraCriacao;
+
+    public ProdutoRequest(String nomeProduto, BigDecimal precoProduto, TipoPromocao promocao) {
+        this.nomeProduto = nomeProduto;
+        this.precoProduto = precoProduto;
+        this.promocao = promocao;
+    }
 }

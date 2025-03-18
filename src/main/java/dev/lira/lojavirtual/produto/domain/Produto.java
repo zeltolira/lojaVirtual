@@ -5,7 +5,6 @@ import dev.lira.lojavirtual.produto.application.api.request.ProdutoRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
@@ -40,11 +39,11 @@ public class Produto {
         this.dataHoraCriacao =  LocalDateTime.now();
     }
 
-    public void patchProduto(ProdutoPatchRequest produtoPatchRequest) {
-        this.nomeProduto = produtoPatchRequest.getNomeProduto();
-        this.precoProduto = produtoPatchRequest.getPrecoProduto();
+    public void patchProduto(ProdutoPatchRequest produtoRequest) {
+        this.nomeProduto = produtoRequest.getNomeProduto();
+        this.precoProduto = produtoRequest.getPrecoProduto();
         this.statusProduto = getStatusProduto();
-        this.promocao = produtoPatchRequest.getPromocao();
+        this.promocao = produtoRequest.getPromocao();
         this.dataHoraUltimaAteracao = LocalDateTime.now();
     }
 
@@ -52,7 +51,7 @@ public class Produto {
         this.statusProduto = StatusProduto.EM_ESTOQUE;
     }
 
-    public void alteraStatusProdutoParaForaDeEstoque(UUID idProduto) {
+    public void alteraStatusProdutoParaForaDeEstoque() {
         this.statusProduto = StatusProduto.FORA_DE_ESTOQUE;
     }
 }

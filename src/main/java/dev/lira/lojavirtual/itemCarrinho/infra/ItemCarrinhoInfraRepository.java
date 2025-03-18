@@ -39,14 +39,19 @@ public class ItemCarrinhoInfraRepository implements ItemCarrinhoRepository {
     }
 
     @Override
-    public ItemCarrinho findById(Long idItemCarrinho) {
-        return itemCarrinhoSpringDataJPARepository.findById(idItemCarrinho)
+    public ItemCarrinho findByIdItemCarrinho(Long idItemCarrinho) {
+        log.info("[start] ItemCarrinhoInfraRepository - findByIdItemCarrinho");
+        ItemCarrinho itemCarrinho = itemCarrinhoSpringDataJPARepository.findById(idItemCarrinho)
                 .orElseThrow(()-> APIException.build(HttpStatus.NOT_FOUND, "Item não encontrado para o id " + idItemCarrinho));
+        log.info("[finish] ItemCarrinhoInfraRepository - findByIdItemCarrinho");
+        return itemCarrinho;
 
     }
 
     @Override
     public void delete(ItemCarrinho item) {
-
+        log.info("[start] ItemCarrinhoInfraRepository - delete");
+        itemCarrinhoSpringDataJPARepository.delete(item);
+        log.info("[finish] ItemCarrinhoInfraRepository - delete");
     }
 }

@@ -6,29 +6,36 @@ import dev.lira.lojavirtual.produto.domain.StatusProduto;
 import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ProdutoTest {
+    private Produto produto;
+
+    @BeforeEach
+    void setUp() {
+        ProdutoRequest request = new ProdutoRequest("Produto Teste", new BigDecimal("100.00"), TipoPromocao.SEM_PROMOCAO);
+        produto = new Produto(request);
+    }
 
     @Test
-    void testCriacaoProduto(){
-        ProdutoRequest produtoRequest = new ProdutoRequest();
-        ReflectionTestUtils.setField(produtoRequest,"nomeProduto", "Produto Teste");
-        ReflectionTestUtils.setField(produtoRequest, "precoProduto", new BigDecimal("100.00"));
-        ReflectionTestUtils.setField(produtoRequest, "promocao", null);
-
-        Produto produto = new Produto(produtoRequest);
-        produto.setIdProduto(UUID.randomUUID());
-
+    void testCriacaoProduto() {
         assertNotNull(produto.getIdProduto());
         assertEquals("Produto Teste", produto.getNomeProduto());
         assertEquals(new BigDecimal("100.00"), produto.getPrecoProduto());
-        assertNull(produto.getPromocao());
+        assertEquals(StatusProduto.EM_ESTOQUE, produto.getStatusProduto());
+        assertEquals(TipoPromocao.SEM_PROMOCAO, produto.getPromocao());
+    }
+
+    @Test
+    void deveAlterarStatusPAraEmEstoque(){
+        Produto produto = new Produto(new ProdutoRequest("Produto Teste", BigDecimal.TEN, null));
+
+        produto.alteraStatusProdutoParaEmEstoque();
+
         assertEquals(StatusProduto.EM_ESTOQUE, produto.getStatusProduto());
     }
 }

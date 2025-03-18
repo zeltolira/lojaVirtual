@@ -1,5 +1,7 @@
 package dev.lira.lojavirtual.itemCarrinho.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;

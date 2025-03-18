@@ -43,7 +43,7 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
     @Override
     public ItemCarrinhoDetalhadoResponse getItemCarrinho(Long idItemCarrinho) {
         log.info("[start] ItemCarrinhoApplicationService - getItemCarrinho");
-        ItemCarrinho itemCarrinho = itemCarrinhoRepository.findById(idItemCarrinho);
+        ItemCarrinho itemCarrinho = itemCarrinhoRepository.findByIdItemCarrinho(idItemCarrinho);
         log.info("[finish] ItemCarrinhoApplicationService - getItemCarrinho");
         return new ItemCarrinhoDetalhadoResponse(itemCarrinho);
     }
@@ -53,20 +53,20 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
         log.info("[start] ItemCarrinhoApplicationService - patchItemCarrinhoById");
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
         if (carrinho == null){
-            throw new IllegalArgumentException("Carrinho não encontrado para o id " + idCarrinho);
+            throw APIException.build(HttpStatus.NOT_FOUND, "Carrinho não encontrado para o id " + idCarrinho);
         }
 
         Optional<ItemCarrinho> itemCarrinhoOptional = carrinho.getItens().stream()
                         .filter(item -> item.getProduto().getIdProduto().equals(idProduto))
                         .findFirst();
         if (itemCarrinhoOptional.isEmpty()){
-            throw new IllegalArgumentException("Produto não encontrado no carrinho");
+            throw APIException.build(HttpStatus.NOT_FOUND, "Produto não encontrado no carrinho");
         }
         ItemCarrinho itemCarrinho = itemCarrinhoOptional.get();
 
         int novaQuantidade = itemCarrinhoPatchResquest.getQuantidade();
         if (novaQuantidade < 0){
-            throw new IllegalArgumentException("A quantidade não poder ser negativa");
+            throw APIException.build(HttpStatus.BAD_REQUEST,"A quantidade não poder ser negativa");
         }
         if (novaQuantidade == 0){
             carrinho.removerItem(itemCarrinho);
@@ -87,12 +87,12 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
     public void deletaItemCarrinho(Long idCarrinho, Long idItemCarrinho, UUID idProduto) {
         log.info("[start] ItemCarrinhoApplicationService - deletaItemCarrinho");
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(idCarrinho);
-        ItemCarrinho item = itemCarrinhoRepository.findById(idItemCarrinho);
+        ItemCarrinho item = itemCarrinhoRepository.findByIdItemCarrinho(idItemCarrinho);
         if (!item.getCarrinho().getIdCarrinho().equals(idCarrinho)){
-            throw new RuntimeException("O item não pertence ao carrinho especificaddo");
+            throw new RuntimeException("O item não pertence ao carrinho especificado");
         }
         if (!item.getProduto().getIdProduto().equals(idProduto)){
-            throw new RuntimeException("O item não está associado ao produto especificaddo");
+            throw new RuntimeException("O item não está associado ao produto especificado");
         }
         carrinho.getItens().remove(item);
         itemCarrinhoRepository.delete(item);
