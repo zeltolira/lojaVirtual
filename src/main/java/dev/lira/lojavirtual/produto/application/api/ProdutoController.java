@@ -67,7 +67,7 @@ public class ProdutoController implements ProdutoAPI {
         log.info("[start] ProdutoController - alteraStatusProdutoParaForaDeEstoque");
         log.info("[idProduto] {}", idProduto);
         produtoService.alteraStatusProdutoParaForaDeEstoque(idProduto);
-        log.info("[start] ProdutoController - alteraStatusProdutoParaForaDeEstoque");
+        log.info("[finish] ProdutoController - alteraStatusProdutoParaForaDeEstoque");
 
     }
 

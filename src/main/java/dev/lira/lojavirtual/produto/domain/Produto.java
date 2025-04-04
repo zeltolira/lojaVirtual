@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Data
@@ -34,16 +35,17 @@ public class Produto {
     public Produto(ProdutoRequest produtoRequest) {
         this.nomeProduto = produtoRequest.getNomeProduto();
         this.precoProduto = produtoRequest.getPrecoProduto();
-        this.statusProduto = getStatusProduto();
+        this.statusProduto = produtoRequest.getStatusProduto();
         this.promocao = produtoRequest.getPromocao();
         this.dataHoraCriacao =  LocalDateTime.now();
     }
 
+
+
     public void patchProduto(ProdutoPatchRequest produtoRequest) {
-        this.nomeProduto = produtoRequest.getNomeProduto();
-        this.precoProduto = produtoRequest.getPrecoProduto();
-        this.statusProduto = getStatusProduto();
-        this.promocao = produtoRequest.getPromocao();
+        Optional.ofNullable(produtoRequest.getNomeProduto()).ifPresent(nome -> this.nomeProduto = nome);
+        Optional.ofNullable(produtoRequest.getPrecoProduto()).ifPresent(preco -> this.precoProduto = preco);
+        Optional.ofNullable(produtoRequest.getPromocao()).ifPresent(promocao -> this.promocao = promocao);
         this.dataHoraUltimaAteracao = LocalDateTime.now();
     }
 

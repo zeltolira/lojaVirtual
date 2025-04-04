@@ -3,6 +3,7 @@ package dev.lira.lojavirtual.itemCarrinho.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
 import dev.lira.lojavirtual.produto.domain.Produto;
@@ -41,12 +42,14 @@ public class ItemCarrinho {
     public ItemCarrinho(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
+        this.dataHoraCriacao = LocalDateTime.now();
         calcularSubtotal();
     }
     public ItemCarrinho(Produto produto, Carrinho carrinho, ItemCarrinhoRequest itemCarrinhoRequest) {
         this.produto = produto;
         this.carrinho = carrinho;
         this.setQuantidade(itemCarrinhoRequest.getQuantidade());
+        this.dataHoraCriacao = LocalDateTime.now();
         calcularSubtotal();
     }
 

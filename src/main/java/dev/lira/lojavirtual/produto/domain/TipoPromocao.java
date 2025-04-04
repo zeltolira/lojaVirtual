@@ -18,9 +18,8 @@ public enum TipoPromocao {
     }
 
     public BigDecimal calcularDesconto(BigDecimal preco, int quantidade){
-        if (this.descontoStrategy == null){
-            return preco.multiply(BigDecimal.valueOf((quantidade)));
-        }
-        return descontoStrategy.calcularDesconto(preco, quantidade);
+        return descontoStrategy != null
+                ? descontoStrategy.calcularDesconto(preco, quantidade)
+                : preco.multiply(BigDecimal.valueOf(quantidade));
     }
 }

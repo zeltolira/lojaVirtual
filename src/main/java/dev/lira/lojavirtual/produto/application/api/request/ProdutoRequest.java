@@ -23,6 +23,7 @@ public class ProdutoRequest {
     @NotNull(message = "O preço é obrigatório.")
     @DecimalMin(value = "0.0", inclusive = false, message = "O preço deve ser maior que zero.")
     private BigDecimal precoProduto;
+    @NotNull(message = "O status do produto é obrigatório.")
     private StatusProduto statusProduto = StatusProduto.EM_ESTOQUE;
     @Enumerated(EnumType.STRING)
     private TipoPromocao promocao;
@@ -32,5 +33,6 @@ public class ProdutoRequest {
         this.nomeProduto = nomeProduto;
         this.precoProduto = precoProduto;
         this.promocao = promocao;
+        this.dataHoraCriacao = LocalDateTime.now();
     }
 }
