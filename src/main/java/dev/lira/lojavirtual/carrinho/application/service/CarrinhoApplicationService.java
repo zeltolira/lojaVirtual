@@ -1,21 +1,16 @@
 package dev.lira.lojavirtual.carrinho.application.service;
 
+import dev.lira.lojavirtual.carrinho.application.api.request.CarrinhoRequest;
 import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoDetalhadoResponse;
 import dev.lira.lojavirtual.carrinho.application.api.response.CarrinhoResponse;
-import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoResponse;
-import dev.lira.lojavirtual.carrinho.repository.CarrinhoRepository;
-import dev.lira.lojavirtual.carrinho.application.api.request.CarrinhoRequest;
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
+import dev.lira.lojavirtual.carrinho.repository.CarrinhoRepository;
 import dev.lira.lojavirtual.handler.APIException;
-import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 import dev.lira.lojavirtual.produto.application.repository.ProdutoRepository;
-import dev.lira.lojavirtual.produto.domain.Produto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 @Log4j2
