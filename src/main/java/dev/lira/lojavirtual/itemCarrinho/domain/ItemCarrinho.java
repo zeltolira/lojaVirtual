@@ -6,11 +6,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import dev.lira.lojavirtual.carrinho.domain.Carrinho;
 import dev.lira.lojavirtual.itemCarrinho.application.api.request.ItemCarrinhoRequest;
+import dev.lira.lojavirtual.produto.application.service.CalculadoraDeDesconto;
 import dev.lira.lojavirtual.produto.domain.Produto;
+import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -43,45 +46,43 @@ public class ItemCarrinho {
         this.produto = produto;
         this.quantidade = quantidade;
         this.dataHoraCriacao = LocalDateTime.now();
-        calcularSubtotal();
     }
     public ItemCarrinho(Produto produto, Carrinho carrinho, ItemCarrinhoRequest itemCarrinhoRequest) {
         this.produto = produto;
         this.carrinho = carrinho;
         this.setQuantidade(itemCarrinhoRequest.getQuantidade());
         this.dataHoraCriacao = LocalDateTime.now();
-        calcularSubtotal();
     }
 
-
-
-    public void calcularSubtotal() {
-       if (produto == null){
-           throw new IllegalArgumentException("O produto não pode ser nulo ao calcular o subtotal.");
-       }
-       if (produto.getPrecoProduto() == null){
-           throw new IllegalArgumentException("O preço do produto não pode ser nulo.");
-       }
-
-        log.info("Calculando subtotal para o produto [{}]: Preço = {}, Quantidade = {}",
-                produto.getIdProduto(), produto.getPrecoProduto(), quantidade);
-
-        if (produto.getPromocao() != null) {
-            this.subtotal = produto.getPromocao().calcularDesconto(produto.getPrecoProduto(), quantidade);
-            log.info("Promoção aplicada: {} | Subtotal calculado: {}", produto.getPromocao(), subtotal);
-        } else {
-            this.subtotal = produto.getPrecoProduto().multiply(BigDecimal.valueOf(quantidade));
-            log.info("Nenhuma promoção aplicada | Subtotal calculado: {}", subtotal);
-        }
+    public void definirSubtotal(BigDecimal subtotal){
+        this.subtotal = subtotal;
     }
 
-
-    public void setQuantidade(int quantidade){
-            if (quantidade <= 0){
-                throw new IllegalArgumentException("Quantidade deve ser maior que zero");
-            }
-            this.quantidade = quantidade;
-            calcularSubtotal();
-    }
+//      public void calcularSubtotal(CalculadoraDeDesconto calculadoraDeDesconto) {
+//       if (produto == null){
+//           throw new IllegalArgumentException("O produto não pode ser nulo ao calcular o subtotal.");
+//       }
+//       if (produto.getPrecoProduto() == null){
+//           throw new IllegalArgumentException("O preço do produto não pode ser nulo.");
+//       }
+//
+//        log.info("Calculando subtotal para o produto [{}]: Preço = {}, Quantidade = {}",
+//                produto.getIdProduto(), produto.getPrecoProduto(), quantidade);
+//
+//        TipoPromocao tipoPromocao = produto.getPromocao() != null
+//                ? produto.getPromocao()
+//                : TipoPromocao.SEM_PROMOCAO;
+//
+//        this.subtotal = calculadoraDeDesconto.calcular(tipoPromocao, produto.getPrecoProduto(), quantidade);
+//
+//        log.info("Promoção aplicada: {} | Subtotal calculado: {}", produto.getPromocao(), subtotal);
+//        }
+//
+//    public void setQuantidade(int quantidade){
+//            if (quantidade <= 0){
+//                throw new IllegalArgumentException("Quantidade deve ser maior que zero");
+//            }
+//            this.quantidade = quantidade;
+//    }
 }
 

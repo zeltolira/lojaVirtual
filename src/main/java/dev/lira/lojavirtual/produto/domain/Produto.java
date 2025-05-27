@@ -27,6 +27,7 @@ public class Produto {
     @NotNull
     private StatusProduto statusProduto = StatusProduto.EM_ESTOQUE;
     @Enumerated(EnumType.STRING)
+    @Column(name = "promocao")
     private TipoPromocao promocao;
 
     private LocalDateTime dataHoraCriacao;

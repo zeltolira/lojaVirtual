@@ -7,6 +7,7 @@ import dev.lira.lojavirtual.produto.application.api.response.ProdutoListResponse
 import dev.lira.lojavirtual.produto.application.api.response.ProdutoResponse;
 import dev.lira.lojavirtual.produto.application.repository.ProdutoRepository;
 import dev.lira.lojavirtual.produto.domain.Produto;
+import dev.lira.lojavirtual.produto.domain.TipoPromocao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 

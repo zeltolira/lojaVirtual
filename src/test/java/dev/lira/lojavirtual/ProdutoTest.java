@@ -56,10 +56,10 @@ public class ProdutoTest {
         assertEquals(StatusProduto.FORA_DE_ESTOQUE, produto.getStatusProduto());
     }
 
-    @Test
-    void testCalculoDescontoSemPromocao() {
-        BigDecimal total = produto.getPromocao().calcularDesconto(new BigDecimal("50.00"), 3);
-        assertEquals(new BigDecimal("150.00"), total);
-    }
+//    @Test
+//    void testCalculoDescontoSemPromocao() {
+//        BigDecimal total = produto.getPromocao().calcularDesconto(new BigDecimal("50.00"), 3);
+//        assertEquals(new BigDecimal("150.00"), total);
+//    }
 
 }

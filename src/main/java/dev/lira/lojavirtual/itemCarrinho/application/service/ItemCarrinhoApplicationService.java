@@ -10,12 +10,14 @@ import dev.lira.lojavirtual.itemCarrinho.application.api.response.ItemCarrinhoRe
 import dev.lira.lojavirtual.itemCarrinho.application.repository.ItemCarrinhoRepository;
 import dev.lira.lojavirtual.itemCarrinho.domain.ItemCarrinho;
 import dev.lira.lojavirtual.produto.application.repository.ProdutoRepository;
+import dev.lira.lojavirtual.produto.application.service.CalculadoraDeDesconto;
 import dev.lira.lojavirtual.produto.domain.Produto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -26,6 +28,7 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
     private final ProdutoRepository produtoRepository;
     private final CarrinhoRepository carrinhoRepository;
     private final ItemCarrinhoRepository itemCarrinhoRepository;
+    private final CalculadoraDeDesconto calculadoraDeDesconto;
 
     @Override
     public ItemCarrinhoResponse postItemCarrinho(ItemCarrinhoRequest itemCarrinhoRequest) {
@@ -33,6 +36,12 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
         Produto produto = produtoRepository.getProdutoById(itemCarrinhoRequest.getIdProduto());
         Carrinho carrinho = carrinhoRepository.getCarrinhoById(itemCarrinhoRequest.getIdCarrinho());
         ItemCarrinho itemCarrinho = new ItemCarrinho(produto, carrinho, itemCarrinhoRequest);
+        BigDecimal subtotaComDesconto = calculadoraDeDesconto.calcular(
+                produto.getPromocao(),
+                produto.getPrecoProduto(),
+                itemCarrinhoRequest.getQuantidade()
+        );
+        itemCarrinho.definirSubtotal(subtotaComDesconto);
         ItemCarrinho itemSalvo = itemCarrinhoRepository.salvarItemCarrinho(itemCarrinho);
         carrinho.adicionarItem(itemCarrinho);
         carrinhoRepository.saveCarrinho(carrinho);
@@ -74,13 +83,17 @@ public class ItemCarrinhoApplicationService implements ItemCarrinhoService {
             carrinhoRepository.saveCarrinho(carrinho);
         }else {
             itemCarrinho.setQuantidade(novaQuantidade);
-            itemCarrinho.calcularSubtotal();
+            BigDecimal subtotalComDesconto = calculadoraDeDesconto.calcular(
+                    itemCarrinho.getProduto().getPromocao(),
+                    itemCarrinho.getProduto().getPrecoProduto(),
+                    novaQuantidade
+            );
+            itemCarrinho.definirSubtotal(subtotalComDesconto);
             carrinho.calcularTotal();
             itemCarrinhoRepository.salvarItemCarrinho(itemCarrinho);
             carrinhoRepository.saveCarrinho(carrinho);
         }
         log.info("[finish] ItemCarrinhoApplicationService - patchItemCarrinhoById");
-
     }
 
     @Override
